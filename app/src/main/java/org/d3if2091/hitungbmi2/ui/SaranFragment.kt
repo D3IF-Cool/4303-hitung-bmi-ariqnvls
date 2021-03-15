@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+
+import kotlinx.android.synthetic.main.fragmen_saran.*
 import org.d3if2091.hitungbmi2.R
 import org.d3if2091.hitungbmi2.data.KategoriBmi
-import org.d3if2091.hitungbmi2.databinding.FragmenSaranBinding.inflate
 
 class SaranFragment {
-    class SaranFragment : Fragment() {
-        private lateinit var binding: FragmentSaranBinding
+    class SaranFragment(val root: View?) : Fragment() {
+        private val args: SaranFragmentArgs by navArgs()
+        private lateinit var binding: SaranFragment
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -42,3 +45,4 @@ class SaranFragment {
         }
     }
 }
+
