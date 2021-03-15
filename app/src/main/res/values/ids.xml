@@ -7,4 +7,5 @@
     <item name="bmiTextView" type="id" />
     <item name="button" type="id" />
     <item name="divider" type="id" />
+    <item name="myNavHostFragment" type="id" />
 </resources>
