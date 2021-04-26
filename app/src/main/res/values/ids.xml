@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="priaRadioButton" type="id" />
+    <item name="beratEditText" type="id" />
+    <item name="textView3" type="id" />
+    <item name="textView" type="id" />
+    <item name="bmiTextView" type="id" />
+    <item name="button" type="id" />
+    <item name="divider" type="id" />
+    <item name="myNavHostFragment" type="id" />
+</resources>
