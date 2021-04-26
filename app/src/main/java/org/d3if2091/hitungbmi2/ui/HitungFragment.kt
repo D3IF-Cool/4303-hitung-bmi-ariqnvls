@@ -13,7 +13,12 @@ import org.d3if2091.hitungbmi2.data.KategoriBmi
 import org.d3if2091.hitungbmi2.databinding.FragmentHitungBinding
 
 class HitungFragment : Fragment() {
-    private val viewModel: HitungViewModel by viewModels()
+    private val viewModel: HitungViewModel by lazy {
+        val db = BmiDb.getInstance(requireContext())
+        val factory = HitungViewModelFactory(db.dao)
+        ViewModelProvider(this, factory).get(HitungViewModel::class.java)
+    }
+
     private lateinit var binding: FragmentHitungBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -33,6 +38,11 @@ class HitungFragment : Fragment() {
                 .actionHitungFragmentToSaranFragment(it))
             viewModel.selesaiNavigasi()
         })
+        viewModel.data.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+            Log.d("HitungFragment", "Data tersimpan. ID = ${it.id}")
+        })
+
 
     }
 
