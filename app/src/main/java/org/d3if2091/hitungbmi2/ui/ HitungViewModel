@@ -1,6 +1,13 @@
 class HitungViewModel : ViewModel() {
-    // Hasil BMI bisa null jika pengguna belum menghitung BMI
     private val hasilBmi = MutableLiveData<HasilBmi?>()
+    private val navigasi = MutableLiveData<KategoriBmi?>()
+    fun mulaiNavigasi() {
+        navigasi.value = hasilBmi.value?.kategori
+    }
+    fun selesaiNavigasi() {
+        navigasi.value = null
+    }
+    fun getNavigasi() : LiveData<KategoriBmi?> = navigasi
     fun hitungBmi(berat: String, tinggi: String, isMale: Boolean) {
         val tinggiCm = tinggi.toFloat() / 100
         val bmi = berat.toFloat() / (tinggiCm * tinggiCm)

@@ -15,29 +15,25 @@ import org.d3if2091.hitungbmi2.databinding.FragmentHitungBinding
 class HitungFragment : Fragment() {
     private val viewModel: HitungViewModel by viewModels()
     private lateinit var binding: FragmentHitungBinding
-    private lateinit var kategoriBmi: KategoriBmi
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentHitungBinding.inflate(
             layoutInflater, container, false)
         binding.button.setOnClickListener { hitungBmi() }
-        binding.saranButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(
-                HitungFragmentDirections.
-                actionHitungFragmentToSaranFragment(kategoriBmi)
-            )
+        binding.saranButton.setOnClickListener { viewModel.mulaiNavigasi() }
+        binding.shareButton.setOnClickListener { shareData() }
         }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getHasilBmi().observe(viewLifecycleOwner, {
+        viewModel.getNavigasi().observe(viewLifecycleOwner, {
             if (it == null) return@observe
-            binding.bmiTextView.text = getString(R.string.bmi_x, it.bmi)
-            binding.kategoriTextView.text = getString(R.string.kategori_x,
-                getKategori(it.kategori))
-            binding.buttonGroup.visibility = View.VISIBLE
+            findNavController().navigate(HitungFragmentDirections
+                .actionHitungFragmentToSaranFragment(it))
+            viewModel.selesaiNavigasi()
         })
+
     }
 
     private fun hitungBmi() {
